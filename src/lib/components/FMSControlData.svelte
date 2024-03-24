@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Card from '$lib/components/ui/card';
 	import { type NetworkTables, NetworkTablesTypeInfos } from 'ntcore-ts-client';
-	const { nt }: { nt: NetworkTables } = $props();
+	const { nt, onChange }: { nt: NetworkTables; onChange: (state: string) => void } = $props();
 	const topic = $derived(
 		nt.createTopic<number>('/FMSInfo/FMSControlData', NetworkTablesTypeInfos.kInteger)
 	);
@@ -26,15 +26,18 @@
 		37: 'Test'
 	};
 	// TODO: Export the type of the robot state
-	export const robotState = $derived(value === null ? '' : robotStateMap?.[value] ?? 'Unknown');
+	const robotState = $derived(value === null ? 'Unknown' : robotStateMap?.[value] ?? 'Unknown');
+	$effect(() => {
+		onChange(robotState);
+	});
 	const color = $derived(value === null ? '' : colorMap?.[value] ?? 'bg-red-500');
 </script>
 
-<Card.Root class={`w-fit ${color}`}>
+<Card.Root class={`w-full ${color}`}>
 	<Card.Header>
 		<Card.Title>Robot State</Card.Title>
 	</Card.Header>
-	<Card.Content class="text-xl">
+	<Card.Content class="text-center text-5xl">
 		{#if value !== null}
 			{#if value === 0}
 				<p>Disconnected</p>
@@ -50,7 +53,7 @@
 				<p>Unknown</p>
 			{/if}
 		{:else}
-			<div class="text-gray-400">No value</div>
+			<div class="text-gray-400">NetworkTables DC</div>
 		{/if}
 	</Card.Content>
 </Card.Root>

@@ -1,9 +1,12 @@
 <script lang="ts">
 	import * as Card from '$lib/components/ui/card';
-	const { value, name }: { value: null | boolean; name: string } = $props();
+	const { value, name, ...props }: { value: null | boolean; name: string } = $props();
 </script>
 
-<Card.Root class={`w-fit ${value !== null ? (value ? 'bg-green-500' : 'bg-red-500') : ''}`}>
+<Card.Root
+	class={`w-fit ${value !== null ? (value ? 'bg-green-500' : 'bg-red-500') : ''}`}
+	{...props}
+>
 	<Card.Header>
 		<Card.Title>{name}</Card.Title>
 	</Card.Header>

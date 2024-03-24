@@ -1,9 +1,9 @@
 <script lang="ts">
 	import * as Card from '$lib/components/ui/card';
-	const { name, value }: { name: string; value: null | number } = $props();
+	const { name, value, ...props }: { name: string; value: null | number } = $props();
 </script>
 
-<Card.Root class="w-fit">
+<Card.Root class="w-fit" {...props}>
 	<Card.Header>
 		<Card.Title>{name}</Card.Title>
 	</Card.Header>

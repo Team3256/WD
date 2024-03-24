@@ -7,12 +7,14 @@
 		nt,
 		path,
 		type,
-		name
+		name,
+		...props
 	}: {
 		nt: NetworkTables;
 		path: string;
 		type: 'double' | 'integer' | 'string' | 'boolean';
 		name?: string;
+		[key: string]: unknown;
 	} = $props();
 	type ValueType = typeof name extends 'double'
 		? number
@@ -44,11 +46,11 @@
 </script>
 
 {#if type === 'integer' || type === 'double'}
-	<NtNumberViewer {value} name={name ?? topic.name} />
+	<NtNumberViewer {value} name={name ?? topic.name} {...props} />
 {:else if type === 'string'}
-	<NtStringViewer {value} name={name ?? topic.name} />
+	<NtStringViewer {value} name={name ?? topic.name} {...props} />
 {:else if type === 'boolean'}
-	<NtBooleanViewer {value} name={name ?? topic.name} />
+	<NtBooleanViewer {value} name={name ?? topic.name} {...props} />
 {:else}
 	<div class="text-red-500">Invalid type</div>
 {/if}
