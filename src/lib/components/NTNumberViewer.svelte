@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Card from '$lib/components/ui/card';
-	const { value, name }: { value: null | string; name: string } = $props();
+	const { name, value }: { name: string; value: null | number } = $props();
 </script>
 
 <Card.Root class="w-fit">

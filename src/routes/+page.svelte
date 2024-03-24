@@ -1,16 +1,14 @@
 <script lang="ts">
-	import NtBooleanViewer from '$lib/components/NTBooleanViewer.svelte';
-	import NtDoubleViewer from '$lib/components/NTDoubleViewer.svelte';
-	import NtIntegerViewer from '$lib/components/NTIntegerViewer.svelte';
 	import FMSControlData from '$lib/components/FMSControlData.svelte';
 	import MatchTimer from '$lib/components/MatchTimer.svelte';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Input from '$lib/components/ui/input/input.svelte';
 	import Label from '$lib/components/ui/label/label.svelte';
 	import Switch from '$lib/components/ui/switch/switch.svelte';
-	import { NetworkTables, NetworkTablesTypeInfos } from 'ntcore-ts-client';
+	import { NetworkTables } from 'ntcore-ts-client';
 	import { onMount } from 'svelte';
 	import AutoChooser from '$lib/components/AutoChooser.svelte';
+	import NtElement from '$lib/components/NTElement.svelte';
 	const TEAM_NUM = 3256;
 	let devMode = $state(true);
 	const nt = $derived(
@@ -36,11 +34,8 @@
 		</div>
 	</div>
 	<div class="mx-auto my-3 flex justify-center space-x-2">
-		<NtIntegerViewer name="Match Number" path="/FMSInfo/MatchNumber" {nt} /><NtIntegerViewer
-			name="Team Number"
-			path="/AdvantageKit/SystemStats/TeamNumber"
-			{nt}
-		/>
+		<NtElement name="Match Number" path="/FMSInfo/MatchNumber" {nt} type="integer" />
+		<NtElement name="Team Number" path="/AdvantageKit/SystemStats/TeamNumber" type="integer" {nt} />
 		<FMSControlData {nt} bind:robotState />
 		<AutoChooser {nt} />
 		<MatchTimer {active} />
@@ -48,6 +43,6 @@
 
 	<!-- <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p> -->
 	<div class="m-3 flex">
-		<NtDoubleViewer path="/SmartDashboard/Mod 0 Angle" {nt} />
+		<NtElement type="double" path="/SmartDashboard/Mod 0 Angle" {nt} />
 	</div>
 </main>
