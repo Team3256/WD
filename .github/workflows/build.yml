@@ -66,6 +66,7 @@ jobs:
           # No .app because it's pretty big and .dmg is nicer
           path: |
             src-tauri/target/release/bundle/*/*.dmg
+            src-tauri/target/release/bundle/*/*.app
             src-tauri/target/release/bundle/*/*.AppImage
             src-tauri/target/release/bundle/*/*.deb
             src-tauri/target/release/bundle/*/*.msi
