@@ -6,6 +6,7 @@
 
 	import { ntEntry } from '$lib/components/ntEntry.svelte';
 	import Separator from './ui/separator/separator.svelte';
+	import BooleanViewer from './BooleanViewer.svelte';
 	const {
 		nt
 	}: {
@@ -28,7 +29,7 @@
 			<!-- <h4 class="mb-4 text-sm font-medium leading-none">Tags</h4> -->
 			{#each Object.entries(INFORMATION) as [name, entry]}
 				<div class="text-sm">
-					{name}: {entry.value}
+					<BooleanViewer {name} value={entry.value} />
 				</div>
 			{/each}
 		</ScrollArea>
