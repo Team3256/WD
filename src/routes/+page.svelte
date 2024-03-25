@@ -12,6 +12,7 @@
 	import AutoChooser from '$lib/components/AutoChooser.svelte';
 	import NtElement from '$lib/components/NTElement.svelte';
 	import Subsystems from '$lib/components/Subsystems.svelte';
+	import MatchInfo from '$lib/components/MatchInfo.svelte';
 	const TEAM_NUM = 3256;
 	let devMode = $state(true);
 	const nt = $derived(
@@ -55,22 +56,7 @@
 		<Subsystems />
 		<div class="flex">
 			<AutoChooser {nt} />
-			<div>
-				<NtElement
-					name="Team Number"
-					path="/AdvantageKit/SystemStats/TeamNumber"
-					type="integer"
-					{nt}
-					class="w-full"
-				/>
-				<NtElement
-					name="Match Number"
-					path="/FMSInfo/MatchNumber"
-					{nt}
-					type="integer"
-					class="w-full"
-				/>
-			</div>
+			<MatchInfo {nt} />
 		</div>
 		<NtElement type="double" path="/SmartDashboard/Mod 0 Angle" {nt} />
 	</div>
