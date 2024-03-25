@@ -52,12 +52,11 @@
 	</div>
 
 	<!-- <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p> -->
-	<div class="flex w-full justify-stretch space-x-2 px-3">
-		<Subsystems />
+	<div class="flex w-full justify-evenly space-x-2 px-3">
+		<Subsystems {nt} />
 		<div class="flex">
 			<AutoChooser {nt} />
 			<MatchInfo {nt} />
 		</div>
-		<NtElement type="double" path="/SmartDashboard/Mod 0 Angle" {nt} />
 	</div>
 </main>
