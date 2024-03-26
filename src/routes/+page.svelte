@@ -53,4 +53,12 @@
 		<AutoChooser {nt} />
 		<MatchInfo {nt} />
 	</div>
+	<div>
+		<NtElement
+			{nt}
+			path="/AdvantageKit/RealOutputs/PivotShooter/Degrees"
+			type="double"
+			name="Pivot Shooter degrees"
+		/>
+	</div>
 </div>
