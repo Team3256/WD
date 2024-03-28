@@ -12,8 +12,8 @@
 		}, true);
 	});
 	const colorMap: Record<number, string> = {
-		0: 'bg-red-500',
-		32: 'bg-slate-500',
+		0: 'flashing-element-bg',
+		32: 'flashing-element-bg',
 		35: 'bg-blue-500',
 		33: 'bg-green-500',
 		37: 'bg-yellow-500'
@@ -30,7 +30,9 @@
 	$effect(() => {
 		onChange(robotState);
 	});
-	const color = $derived(value === null ? '' : colorMap?.[value] ?? 'bg-red-500');
+	const color = $derived(
+		value === null ? 'flashing-element-bg' : colorMap?.[value] ?? 'bg-slate-500'
+	);
 </script>
 
 <Card.Root class={`w-full ${color}`}>
@@ -42,7 +44,7 @@
 			{#if value === 0}
 				<p>Disconnected</p>
 			{:else if value === 32}
-				<p class="flashing-element">Disabled</p>
+				<p>Disabled</p>
 			{:else if value === 35}
 				<p>Autonomous</p>
 			{:else if value === 33}
@@ -53,7 +55,7 @@
 				<p>Unknown</p>
 			{/if}
 		{:else}
-			<div class="text-gray-400">NetworkTables DC</div>
+			<div>FMS DC</div>
 		{/if}
 	</Card.Content>
 </Card.Root>
@@ -71,10 +73,25 @@
 			color: red;
 		}
 	}
+	@keyframes flash-bg {
+		0% {
+			background-color: red;
+		}
+		50% {
+			background-color: white;
+		}
+		100% {
+			background-color: red;
+		}
+	}
 
 	/* Apply the animation to an element */
 	.flashing-element {
 		color: red;
-		animation: flash 0.2s 20 alternate; /* alternate for flashing back and forth */
+		animation: flash 0.2s 10 alternate; /* alternate for flashing back and forth */
+	}
+	:global(.flashing-element-bg) {
+		background-color: red;
+		animation: flash-bg 0.2s 10 alternate; /* alternate for flashing back and forth */
 	}
 </style>
