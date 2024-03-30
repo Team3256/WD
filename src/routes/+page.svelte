@@ -16,12 +16,10 @@
 	import SubsystemsGraphic from '$lib/components/vis/SubsystemsGraphic.svelte';
 	import SwerveGraphic from '$lib/components/vis/SwerveGraphic.svelte';
 	import AprilTagVisible from '$lib/components/AprilTagVisible.svelte';
-	const TEAM_NUM = 3256;
+	let teamNum = $state(3256);
 	let devMode = $state(true);
 	const nt = $derived(
-		devMode
-			? NetworkTables.getInstanceByURI('localhost')
-			: NetworkTables.getInstanceByTeam(TEAM_NUM)
+		devMode ? NetworkTables.getInstanceByURI('localhost') : NetworkTables.getInstanceByTeam(teamNum)
 	);
 	let active = $state(false);
 </script>
@@ -67,11 +65,18 @@
 				name="Speaker AprilTag visible"
 			/>
 		</div>
-		<!-- TODO: 
-					- Flash if able to shoot
-				-->
 		<div class="flex">
 			<SwerveGraphic {nt} />
+			<div class="flex flex-col space-y-3 p-3">
+				<div class="flex items-center space-x-2">
+					<Switch id="airplane-mode" bind:checked={devMode} />
+					<Label for="airplane-mode">Dev Mode</Label>
+				</div>
+				<div class="grid w-full max-w-sm items-center gap-1.5">
+					<Label for="team">Team #</Label>
+					<Input type="number" id="team" bind:value={teamNum} />
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="flex-[50%]">
