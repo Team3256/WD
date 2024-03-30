@@ -1,5 +1,5 @@
 <script lang="ts">
-	const { value, name }: { name: string; value?: boolean } = $props();
+	const { value, name }: { name: string; value: null | boolean } = $props();
 </script>
 
 <p class="my-2">

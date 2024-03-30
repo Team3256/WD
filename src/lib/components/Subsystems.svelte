@@ -44,7 +44,7 @@
 	);
 </script>
 
-<div class="flex flex-col">
+<div class="flex w-[500px] flex-col">
 	<Card.Root>
 		<Card.Header>
 			<Card.Title>Subsystems</Card.Title>

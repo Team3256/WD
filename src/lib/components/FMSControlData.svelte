@@ -92,6 +92,6 @@
 	}
 	:global(.flashing-element-bg) {
 		background-color: red;
-		animation: flash-bg 0.2s 10 alternate; /* alternate for flashing back and forth */
+		animation: flash-bg 0.5s infinite alternate; /* alternate for flashing back and forth */
 	}
 </style>

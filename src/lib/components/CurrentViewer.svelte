@@ -6,6 +6,6 @@
 	{name}:
 	<span
 		class={`rounded p-1 ${limit === undefined || current <= limit ? 'bg-green-500' : 'bg-red-500'}`}
-		>{current} amps</span
+		>{current.toFixed(4)} amps</span
 	>
 </p>

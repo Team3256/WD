@@ -13,6 +13,8 @@
 	import NtElement from '$lib/components/NTElement.svelte';
 	import Subsystems from '$lib/components/Subsystems.svelte';
 	import MatchInfo from '$lib/components/MatchInfo.svelte';
+	import SubsystemsGraphic from '$lib/components/vis/SubsystemsGraphic.svelte';
+	import SwerveGraphic from '$lib/components/vis/SwerveGraphic.svelte';
 	const TEAM_NUM = 3256;
 	let devMode = $state(true);
 	const nt = $derived(
@@ -23,14 +25,14 @@
 	let active = $state(false);
 </script>
 
-<h1 class="my-3 text-center text-4xl">William's Demise</h1>
+<!-- <h1 class="my-3 text-center text-4xl">William's Demise</h1>
 <div class="flex justify-center">
 	<div class="flex items-center space-x-2">
 		<Switch id="airplane-mode" bind:checked={devMode} />
 		<Label for="airplane-mode">Dev Mode</Label>
 	</div>
-</div>
-<div class="my-3 flex h-[30vh] w-full justify-center space-x-2 px-3">
+</div> -->
+<div class="my-3 flex h-[20vh] w-full justify-center space-x-2 px-3">
 	<FMSControlData
 		{nt}
 		onChange={(robotState) => {
@@ -47,18 +49,28 @@
 </div>
 
 <!-- <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p> -->
-<div class="flex w-full justify-evenly space-x-2 px-3">
-	<Subsystems {nt} />
-	<div class="flex">
-		<AutoChooser {nt} />
-		<MatchInfo {nt} />
+<div class="flex w-full">
+	<div class="h-fit flex-[50%] flex-col justify-start px-3">
+		<div class="flex">
+			<AutoChooser {nt} />
+			<MatchInfo {nt} />
+			<NtElement
+				{nt}
+				path="/ShuffleBoard/PivotShooter/PivotShooter Position"
+				type="double"
+				name="Pivot Shooter degrees"
+			/>
+		</div>
+		<!-- TODO: 
+					- Flash if able to shoot
+					- Visualizer
+				-->
+		<!-- <Subsystems {nt} /> -->
+		<div class="flex">
+			<SwerveGraphic {nt} />
+		</div>
 	</div>
-	<div>
-		<NtElement
-			{nt}
-			path="/AdvantageKit/RealOutputs/PivotShooter/Degrees"
-			type="double"
-			name="Pivot Shooter degrees"
-		/>
+	<div class="flex-[50%]">
+		<SubsystemsGraphic {nt} />
 	</div>
 </div>

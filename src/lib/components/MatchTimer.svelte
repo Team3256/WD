@@ -38,11 +38,11 @@
 	</Card.Header>
 	<Card.Content>
 		{#if active}
-			<p class="dynamic-text-size text-center">
+			<p class="dynamic-text-size text-center align-middle">
 				{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}
 			</p>
 		{:else}
-			<p class="dynamic-text-size text-center">Not Active</p>
+			<p class="dynamic-text-size text-center align-middle">Not Active</p>
 		{/if}
 		<!-- {#if value !== null}
 			<code class="text-mono">{value}</code>
