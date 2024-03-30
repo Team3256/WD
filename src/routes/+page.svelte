@@ -1,23 +1,20 @@
 <script lang="ts">
 	import FMSControlData from '$lib/components/FMSControlData.svelte';
 	import MatchTimer from '$lib/components/MatchTimer.svelte';
-	import Button from '$lib/components/ui/button/button.svelte';
 	import Input from '$lib/components/ui/input/input.svelte';
 	import * as Card from '$lib/components/ui/card';
 
 	import Label from '$lib/components/ui/label/label.svelte';
 	import Switch from '$lib/components/ui/switch/switch.svelte';
 	import { NetworkTables } from 'ntcore-ts-client';
-	import { onMount } from 'svelte';
 	import AutoChooser from '$lib/components/AutoChooser.svelte';
 	import NtElement from '$lib/components/NTElement.svelte';
-	import Subsystems from '$lib/components/Subsystems.svelte';
 	import MatchInfo from '$lib/components/MatchInfo.svelte';
 	import SubsystemsGraphic from '$lib/components/vis/SubsystemsGraphic.svelte';
 	import SwerveGraphic from '$lib/components/vis/SwerveGraphic.svelte';
 	import AprilTagVisible from '$lib/components/AprilTagVisible.svelte';
 	let teamNum = $state(3256);
-	let devMode = $state(true);
+	let devMode = $state(false);
 	const nt = $derived(
 		devMode ? NetworkTables.getInstanceByURI('localhost') : NetworkTables.getInstanceByTeam(teamNum)
 	);
