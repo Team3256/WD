@@ -56,7 +56,7 @@
 			<MatchInfo {nt} />
 			<NtElement
 				{nt}
-				path="/ShuffleBoard/PivotShooter/PivotShooter Position"
+				path="/AdvantageKit/RealOutputs/PivotShooter/Degrees"
 				type="double"
 				name="Pivot Shooter degrees"
 			/>
