@@ -18,7 +18,12 @@
 		'/AdvantageKit/RealOutputs/Shooter/ShooterFollowCurrent',
 		'double'
 	);
-	const feederCurrent = ntEntry(nt, '/AdvantageKit/RealOutputs/Shooter/FeederCurrent', 'double');
+	// const feederCurrent = ntEntry(nt, '/AdvantageKit/RealOutputs/Shooter/FeederCurrent', 'double');
+	const pivotShooterCurrent = ntEntry(
+		nt,
+		'/AdvantageKit/RealOutputs/PivotShooter/Current',
+		'double'
+	);
 	// const totalShooterCurrent = $derived(
 	// 	(shooterCurrent.value ?? 0) + (shooterFollowCurrent.value ?? 0) + (feederCurrent.value ?? 0)
 	// );
@@ -54,6 +59,12 @@
 		klass="absolute top-[15%] left-[40%]"
 		name="Shooter Right"
 		current={shooterFollowCurrent.value ?? 0}
+		limit={60}
+	/>
+	<CurrentDot
+		klass="absolute top-[25%] left-[50%]"
+		name="Shooter Pivot"
+		current={pivotShooterCurrent.value ?? 0}
 		limit={60}
 	/>
 	<!-- <CurrentDot
