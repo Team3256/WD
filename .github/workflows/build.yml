@@ -59,25 +59,3 @@ jobs:
           restore-keys: ${{ runner.os }}-cargo-
       - name: Build the app
         run: pnpm tauri build
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ runner.os }} ${{ runner.arch }} artifacts
-          # No .app because it's pretty big and .dmg is nicer
-          path: |
-            src-tauri/target/release/bundle/*/*.dmg
-            src-tauri/target/release/bundle/*/*.app
-            src-tauri/target/release/bundle/*/*.AppImage
-            src-tauri/target/release/bundle/*/*.deb
-            src-tauri/target/release/bundle/*/*.msi
-      # - name: Build the app
-      #   uses: tauri-apps/tauri-action@v0
-      #   working-directory: src/frontend
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     tagName: v__VERSION__ # tauri-action replaces \_\_VERSION\_\_ with the app version
-      #     releaseName: 'v__VERSION__'
-      #     releaseBody: 'See the assets to download this version and install.'
-      #     releaseDraft: true
-      #     prerelease: false
