@@ -24,9 +24,59 @@
 		'/AdvantageKit/RealOutputs/PivotShooter/Current',
 		'double'
 	);
-	// const totalShooterCurrent = $derived(
-	// 	(shooterCurrent.value ?? 0) + (shooterFollowCurrent.value ?? 0) + (feederCurrent.value ?? 0)
-	// );
+
+	const swerveMod0DriveCurrent = ntEntry(
+		nt,
+		'/AdvantageKit/RealOutputs/SwerveModule0/DriveMotorCurrent',
+		'double'
+	);
+	const swerveMod0AngleCurrent = ntEntry(
+		nt,
+		'/AdvantageKit/RealOutputs/SwerveModule0/AngleMotorCurrent',
+		'double'
+	);
+	const swerveMod1DriveCurrent = ntEntry(
+		nt,
+		'/AdvantageKit/RealOutputs/SwerveModule1/DriveMotorCurrent',
+		'double'
+	);
+	const swerveMod1AngleCurrent = ntEntry(
+		nt,
+		'/AdvantageKit/RealOutputs/SwerveModule1/AngleMotorCurrent',
+		'double'
+	);
+	const swerveMod2DriveCurrent = ntEntry(
+		nt,
+		'/AdvantageKit/RealOutputs/SwerveModule2/DriveMotorCurrent',
+		'double'
+	);
+	const swerveMod2AngleCurrent = ntEntry(
+		nt,
+		'/AdvantageKit/RealOutputs/SwerveModule2/AngleMotorCurrent',
+		'double'
+	);
+	const swerveMod3DriveCurrent = ntEntry(
+		nt,
+		'/AdvantageKit/RealOutputs/SwerveModule3/DriveMotorCurrent',
+		'double'
+	);
+	const swerveMod3AngleCurrent = ntEntry(
+		nt,
+		'/AdvantageKit/RealOutputs/SwerveModule3/AngleMotorCurrent',
+		'double'
+	);
+	const totalSwerveDriveMotorCurrent = $derived(
+		(swerveMod0DriveCurrent.value ?? 0) +
+			(swerveMod1DriveCurrent.value ?? 0) +
+			(swerveMod2DriveCurrent.value ?? 0) +
+			(swerveMod3DriveCurrent.value ?? 0)
+	);
+	const totalSwerveAngleMotorCurrent = $derived(
+		(swerveMod0AngleCurrent.value ?? 0) +
+			(swerveMod1AngleCurrent.value ?? 0) +
+			(swerveMod2AngleCurrent.value ?? 0) +
+			(swerveMod3AngleCurrent.value ?? 0)
+	);
 </script>
 
 <div class="relative h-fit w-full">
@@ -66,6 +116,18 @@
 		name="Shooter Pivot"
 		current={pivotShooterCurrent.value ?? 0}
 		limit={60}
+	/>
+	<CurrentDot
+		klass="absolute bottom-[20%] right-[30%]"
+		name="Total Swerve Drive"
+		current={totalSwerveDriveMotorCurrent}
+		limit={400}
+	/>
+	<CurrentDot
+		klass="absolute bottom-[20%] right-[10%]"
+		name="Total Swerve Angle"
+		current={totalSwerveAngleMotorCurrent}
+		limit={240}
 	/>
 	<!-- <CurrentDot
 		{nt}

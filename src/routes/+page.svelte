@@ -65,17 +65,27 @@
 				name="Speaker AprilTag visible"
 			/>
 		</div>
-		<div class="flex">
-			<SwerveGraphic {nt} />
-			<div class="flex flex-col space-y-3 p-3">
-				<div class="flex items-center space-x-2">
-					<Switch id="airplane-mode" bind:checked={devMode} />
-					<Label for="airplane-mode">Dev Mode</Label>
-				</div>
-				<div class="grid w-full max-w-sm items-center gap-1.5">
-					<Label for="team">Team #</Label>
-					<Input type="number" id="team" bind:value={teamNum} />
-				</div>
+		<div class="flex pt-3">
+			<div class="w-full flex-[50%]">
+				<SwerveGraphic {nt} />
+			</div>
+
+			<div class="flex flex-[50%] flex-col pl-3">
+				<Card.Root class="w-full">
+					<Card.Header>
+						<Card.Title>Config</Card.Title>
+					</Card.Header>
+					<Card.Content class="space-y-5">
+						<div class="flex items-center space-x-2">
+							<Label for="airplane-mode">Dev Mode</Label>
+							<Switch id="airplane-mode" bind:checked={devMode} />
+						</div>
+						<div class="grid w-full max-w-sm items-center gap-1.5">
+							<Label for="team">Team #</Label>
+							<Input type="number" id="team" bind:value={teamNum} />
+						</div>
+					</Card.Content>
+				</Card.Root>
 			</div>
 		</div>
 	</div>
