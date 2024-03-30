@@ -1,0 +1,28 @@
+name: Release And Upload
+on:
+  release:
+    types:
+      - created
+jobs:
+  upload:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    permissions:
+      id-token: write # IMPORTANT: this permission is mandatory for trusted publishing
+    steps:
+      - name: Download all the dists
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ runner.os }} ${{ runner.arch }} artifacts
+      - name: Upload artifacts to release
+        uses: shogo82148/actions-upload-release-asset@v1
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: |
+            src-tauri/target/release/bundle/**/*
+            src-tauri/target/release/bundle/**/*
+            src-tauri/target/release/bundle/**/*
+            src-tauri/target/release/bundle/**/*
+            src-tauri/target/release/bundle/**/*
