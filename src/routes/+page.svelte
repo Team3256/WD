@@ -15,6 +15,7 @@
 	import MatchInfo from '$lib/components/MatchInfo.svelte';
 	import SubsystemsGraphic from '$lib/components/vis/SubsystemsGraphic.svelte';
 	import SwerveGraphic from '$lib/components/vis/SwerveGraphic.svelte';
+	import AprilTagVisible from '$lib/components/AprilTagVisible.svelte';
 	const TEAM_NUM = 3256;
 	let devMode = $state(true);
 	const nt = $derived(
@@ -60,12 +61,15 @@
 				type="double"
 				name="Pivot Shooter degrees"
 			/>
+			<AprilTagVisible
+				{nt}
+				path="/AdvantageKit/RealOutputs/PivotShooter/IsSpeakerTag"
+				name="Speaker AprilTag visible"
+			/>
 		</div>
 		<!-- TODO: 
 					- Flash if able to shoot
-					- Visualizer
 				-->
-		<!-- <Subsystems {nt} /> -->
 		<div class="flex">
 			<SwerveGraphic {nt} />
 		</div>
