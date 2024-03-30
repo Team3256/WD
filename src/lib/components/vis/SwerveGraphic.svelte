@@ -1,6 +1,7 @@
 <script lang="ts">
 	import imgSrc from '$lib/assets/swerveBase.png';
 	import { ntEntry } from '../ntEntry.svelte';
+	import BatteryDot from './BatteryDot.svelte';
 	import CurrentDot from './CurrentDot.svelte';
 	import type { NetworkTables } from 'ntcore-ts-client';
 
@@ -45,6 +46,7 @@
 		'/AdvantageKit/RealOutputs/SwerveModule3/AngleMotorCurrent',
 		'double'
 	);
+	const batteryVoltage = ntEntry(nt, '/AdvantageKit/SystemStats/BatteryVoltage', 'double');
 </script>
 
 <div class="relative h-full w-fit">
@@ -98,4 +100,5 @@
 		current={swerveMod3AngleCurrent.value ?? 0}
 		limit={60}
 	/>
+	<BatteryDot klass="absolute left-[40%] top-[15%]" voltage={batteryVoltage.value ?? 0} />
 </div>
