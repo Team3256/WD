@@ -4,7 +4,11 @@
 
 Behold, in all of its glory:
 
-![Ryan Abraham's Best Friend](./screenshot.jpeg)
+![Ryan Abraham's Best Friend](./screenshot-light.jpeg)
+
+Dark mode (adaptive to system settings):
+
+![Ryan Abraham's Best Friend](./screenshot-dark.jpeg)
 
 ## Developing
 
