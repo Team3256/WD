@@ -4,7 +4,7 @@
 
 Behold, in all of its glory:
 
-![Ryan Abraham's Best Friend](./screenshot.png)
+![Ryan Abraham's Best Friend](./screenshot.jpeg)
 
 ## Developing
 
