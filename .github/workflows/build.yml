@@ -43,6 +43,11 @@ jobs:
             ~/.pnpm-store
           key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: ${{ runner.os }}-pnpm-
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build the app
+        run: pnpm tauri build
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -54,7 +59,3 @@ jobs:
             src-tauri/target/release/bundle/*/*.AppImage
             src-tauri/target/release/bundle/*/*.deb
             src-tauri/target/release/bundle/*/*.msi
-      - name: Install dependencies
-        run: pnpm install
-      - name: Build the app
-        run: pnpm tauri build
