@@ -10,47 +10,33 @@
 	import Separator from '../ui/separator/separator.svelte';
 
 	const { nt }: { nt: NetworkTables } = $props();
-	const swerveMod0DriveCurrent = ntEntry(
-		nt,
-		'/AdvantageKit/RealOutputs/SwerveModule0/DriveMotorCurrent',
-		'double'
+	const swerveMod0DriveCurrent = $derived(
+		ntEntry(nt, '/AdvantageKit/RealOutputs/SwerveModule0/DriveMotorCurrent', 'double')
 	);
-	const swerveMod0AngleCurrent = ntEntry(
-		nt,
-		'/AdvantageKit/RealOutputs/SwerveModule0/AngleMotorCurrent',
-		'double'
+	const swerveMod0AngleCurrent = $derived(
+		ntEntry(nt, '/AdvantageKit/RealOutputs/SwerveModule0/AngleMotorCurrent', 'double')
 	);
-	const swerveMod1DriveCurrent = ntEntry(
-		nt,
-		'/AdvantageKit/RealOutputs/SwerveModule1/DriveMotorCurrent',
-		'double'
+	const swerveMod1DriveCurrent = $derived(
+		ntEntry(nt, '/AdvantageKit/RealOutputs/SwerveModule1/DriveMotorCurrent', 'double')
 	);
-	const swerveMod1AngleCurrent = ntEntry(
-		nt,
-		'/AdvantageKit/RealOutputs/SwerveModule1/AngleMotorCurrent',
-		'double'
+	const swerveMod1AngleCurrent = $derived(
+		ntEntry(nt, '/AdvantageKit/RealOutputs/SwerveModule1/AngleMotorCurrent', 'double')
 	);
-	const swerveMod2DriveCurrent = ntEntry(
-		nt,
-		'/AdvantageKit/RealOutputs/SwerveModule2/DriveMotorCurrent',
-		'double'
+	const swerveMod2DriveCurrent = $derived(
+		ntEntry(nt, '/AdvantageKit/RealOutputs/SwerveModule2/DriveMotorCurrent', 'double')
 	);
-	const swerveMod2AngleCurrent = ntEntry(
-		nt,
-		'/AdvantageKit/RealOutputs/SwerveModule2/AngleMotorCurrent',
-		'double'
+	const swerveMod2AngleCurrent = $derived(
+		ntEntry(nt, '/AdvantageKit/RealOutputs/SwerveModule2/AngleMotorCurrent', 'double')
 	);
-	const swerveMod3DriveCurrent = ntEntry(
-		nt,
-		'/AdvantageKit/RealOutputs/SwerveModule3/DriveMotorCurrent',
-		'double'
+	const swerveMod3DriveCurrent = $derived(
+		ntEntry(nt, '/AdvantageKit/RealOutputs/SwerveModule3/DriveMotorCurrent', 'double')
 	);
-	const swerveMod3AngleCurrent = ntEntry(
-		nt,
-		'/AdvantageKit/RealOutputs/SwerveModule3/AngleMotorCurrent',
-		'double'
+	const swerveMod3AngleCurrent = $derived(
+		ntEntry(nt, '/AdvantageKit/RealOutputs/SwerveModule3/AngleMotorCurrent', 'double')
 	);
-	const batteryVoltage = ntEntry(nt, '/AdvantageKit/SystemStats/BatteryVoltage', 'double');
+	const batteryVoltage = $derived(
+		ntEntry(nt, '/AdvantageKit/SystemStats/BatteryVoltage', 'double')
+	);
 </script>
 
 <Card.Root>

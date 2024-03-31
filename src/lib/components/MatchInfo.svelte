@@ -12,10 +12,10 @@
 	}: {
 		nt: NetworkTables;
 	} = $props();
-	const INFORMATION = {
+	const INFORMATION = $derived({
 		'DriverStation Attached': ntEntry(nt, '/AdvantageKit/DriverStation/DSAttached', 'boolean'),
 		'FMS Attached': ntEntry(nt, '/AdvantageKit/DriverStation/FMSAttached', 'boolean')
-	};
+	});
 	// const dsAttatched = ntEntry(nt, '/AdvantageKit/DriverStation/DSAttached', 'boolean');
 	// const fmsAttatched = ntEntry(nt, '/AdvantageKit/DriverStation/fmsAttached', 'boolean');
 </script>

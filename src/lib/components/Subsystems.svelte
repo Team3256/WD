@@ -5,26 +5,18 @@
 	import CurrentViewer from './CurrentViewer.svelte';
 	import ScrollArea from './ui/scroll-area/scroll-area.svelte';
 	const { nt }: { nt: NetworkTables } = $props();
-	const intakeCurrent = ntEntry(nt, '/AdvantageKit/RealOutputs/Intake/Current', 'double');
-	const swerveMod0DriveCurrent = ntEntry(
-		nt,
-		'/AdvantageKit/RealOutputs/SwerveModule0/DriveMotorCurrent',
-		'double'
+	const intakeCurrent = $derived(ntEntry(nt, '/AdvantageKit/RealOutputs/Intake/Current', 'double'));
+	const swerveMod0DriveCurrent = $derived(
+		ntEntry(nt, '/AdvantageKit/RealOutputs/SwerveModule0/DriveMotorCurrent', 'double')
 	);
-	const swerveMod1DriveCurrent = ntEntry(
-		nt,
-		'/AdvantageKit/RealOutputs/SwerveModule1/DriveMotorCurrent',
-		'double'
+	const swerveMod1DriveCurrent = $derived(
+		ntEntry(nt, '/AdvantageKit/RealOutputs/SwerveModule1/DriveMotorCurrent', 'double')
 	);
-	const swerveMod2DriveCurrent = ntEntry(
-		nt,
-		'/AdvantageKit/RealOutputs/SwerveModule2/DriveMotorCurrent',
-		'double'
+	const swerveMod2DriveCurrent = $derived(
+		ntEntry(nt, '/AdvantageKit/RealOutputs/SwerveModule2/DriveMotorCurrent', 'double')
 	);
-	const swerveMod3DriveCurrent = ntEntry(
-		nt,
-		'/AdvantageKit/RealOutputs/SwerveModule3/DriveMotorCurrent',
-		'double'
+	const swerveMod3DriveCurrent = $derived(
+		ntEntry(nt, '/AdvantageKit/RealOutputs/SwerveModule3/DriveMotorCurrent', 'double')
 	);
 	const totalSwerveDriveMotorCurrent = $derived(
 		(swerveMod0DriveCurrent.value ?? 0) +
@@ -32,13 +24,15 @@
 			(swerveMod2DriveCurrent.value ?? 0) +
 			(swerveMod3DriveCurrent.value ?? 0)
 	);
-	const shooterCurrent = ntEntry(nt, '/AdvantageKit/RealOutputs/Shooter/ShooterCurrent', 'double');
-	const shooterFollowCurrent = ntEntry(
-		nt,
-		'/AdvantageKit/RealOutputs/Shooter/ShooterFollowCurrent',
-		'double'
+	const shooterCurrent = $derived(
+		ntEntry(nt, '/AdvantageKit/RealOutputs/Shooter/ShooterCurrent', 'double')
 	);
-	const feederCurrent = ntEntry(nt, '/AdvantageKit/RealOutputs/Shooter/FeederCurrent', 'double');
+	const shooterFollowCurrent = $derived(
+		ntEntry(nt, '/AdvantageKit/RealOutputs/Shooter/ShooterFollowCurrent', 'double')
+	);
+	const feederCurrent = $derived(
+		ntEntry(nt, '/AdvantageKit/RealOutputs/Shooter/FeederCurrent', 'double')
+	);
 	const totalShooterCurrent = $derived(
 		(shooterCurrent.value ?? 0) + (shooterFollowCurrent.value ?? 0) + (feederCurrent.value ?? 0)
 	);
