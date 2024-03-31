@@ -31,7 +31,6 @@ jobs:
           node-version: 21
           cache: 'pnpm'
           cache-dependency-path: pnpm-lock.yaml
-
       - name: Install dependencies for Tauri (ubuntu only)
         if: matrix.os == 'ubuntu-latest'
         run: |
@@ -48,17 +47,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
-
-      - name: Load cached Cargo
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('src-tauri/Cargo.lock') }}
-          restore-keys: ${{ runner.os }}-cargo-
       - name: Build the app
         run: pnpm tauri build
       - name: Upload artifacts
