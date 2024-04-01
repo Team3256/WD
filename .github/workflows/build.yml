@@ -46,7 +46,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Build the app
-        run: pnpm tauri build
+        run: pnpm tauri build -- --debug
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
