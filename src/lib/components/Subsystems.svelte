@@ -87,7 +87,7 @@
 				<!-- <CurrentViewer name="Shooter Left" current={shooterCurrent.value ?? 0} limit={60} />
 				<CurrentViewer name="Shooter Right" current={shooterFollowCurrent.value ?? 0} limit={60} /> -->
 				<CurrentViewer name="Shooter Pivot" current={pivotShooterCurrent.value ?? 0} limit={60} />
-				<CurrentViewer name="Total Swerve Current" current={totalShooterCurrent} limit={640} />
+				<CurrentViewer name="Total Swerve Current" current={totalSwerveCurrent} limit={640} />
 			</ScrollArea>
 			<!-- {#if value !== null}
             {#if value}
