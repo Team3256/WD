@@ -13,6 +13,7 @@
 	import SubsystemsGraphic from '$lib/components/vis/SubsystemsGraphic.svelte';
 	import SwerveGraphic from '$lib/components/vis/SwerveGraphic.svelte';
 	import AprilTagVisible from '$lib/components/AprilTagVisible.svelte';
+	import Subsystems from '$lib/components/Subsystems.svelte';
 	let teamNum = $state(3256);
 	let devMode = $state(false);
 	const nt = $derived(
@@ -28,7 +29,7 @@
 		<Label for="airplane-mode">Dev Mode</Label>
 	</div>
 </div> -->
-<div class="my-3 flex h-[20vh] w-full justify-center space-x-2 px-3">
+<div class="my-3 flex w-full justify-center space-x-2 px-3">
 	<FMSControlData
 		{nt}
 		onChange={(robotState) => {
@@ -45,48 +46,45 @@
 </div>
 
 <!-- <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p> -->
-<div class="flex w-full">
-	<div class="h-fit flex-[50%] flex-col justify-start px-3">
-		<div class="flex">
-			<AutoChooser {nt} />
-			<MatchInfo {nt} />
-			<NtElement
-				{nt}
-				path="/AdvantageKit/RealOutputs/PivotShooter/Degrees"
-				type="double"
-				name="Pivot Shooter degrees"
-			/>
+
+<!-- <div class="h-fit flex-[50%] flex-col justify-start px-3"> -->
+<div class="space-y-3 px-3">
+	<div class="flex">
+		<Subsystems {nt} />
+		<AutoChooser {nt} />
+		<MatchInfo {nt} />
+		<div class="flex w-full flex-col">
 			<AprilTagVisible
 				{nt}
 				path="/AdvantageKit/RealOutputs/PivotShooter/IsSpeakerTag"
 				name="Speaker AprilTag visible"
 			/>
-		</div>
-		<div class="flex pt-3">
-			<div class="w-full flex-[50%]">
-				<SwerveGraphic {nt} />
-			</div>
-
-			<div class="flex flex-[50%] flex-col pl-3">
-				<Card.Root class="w-full">
-					<Card.Header>
-						<Card.Title>Config</Card.Title>
-					</Card.Header>
-					<Card.Content class="space-y-5">
-						<div class="flex items-center space-x-2">
-							<Label for="airplane-mode">Dev Mode</Label>
-							<Switch id="airplane-mode" bind:checked={devMode} />
-						</div>
-						<div class="grid w-full max-w-sm items-center gap-1.5">
-							<Label for="team">Team #</Label>
-							<Input type="number" id="team" bind:value={teamNum} />
-						</div>
-					</Card.Content>
-				</Card.Root>
-			</div>
+			<NtElement
+				class="h-full w-full"
+				{nt}
+				path="/AdvantageKit/RealOutputs/PivotShooter/Degrees"
+				type="double"
+				name="Pivot Shooter degrees"
+			/>
 		</div>
 	</div>
-	<div class="flex-[50%]">
-		<SubsystemsGraphic {nt} />
-	</div>
+	<!-- </div> -->
+	<Card.Root class="w-fit">
+		<Card.Header>
+			<Card.Title>Config</Card.Title>
+		</Card.Header>
+		<Card.Content class="space-y-5">
+			<div class="flex items-center space-x-2">
+				<Label for="airplane-mode">Dev Mode</Label>
+				<Switch id="airplane-mode" bind:checked={devMode} />
+			</div>
+			<div class="grid w-full max-w-sm items-center gap-1.5">
+				<Label for="team">Team #</Label>
+				<Input type="number" id="team" bind:value={teamNum} />
+			</div>
+		</Card.Content>
+	</Card.Root>
 </div>
+<!-- <div class="flex-[50%]">
+		<SubsystemsGraphic {nt} />
+	</div> -->
