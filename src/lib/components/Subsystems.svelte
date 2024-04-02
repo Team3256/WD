@@ -59,9 +59,6 @@
 			(swerveMod2AngleCurrent.value ?? 0) +
 			(swerveMod3AngleCurrent.value ?? 0)
 	);
-	const totalSwerveCurrent = $derived(
-		(totalSwerveDriveMotorCurrent ?? 0) + (totalSwerveAngleMotorCurrent ?? 0)
-	);
 	const totalShooterCurrent = $derived(
 		(shooterCurrent.value ?? 0) + (shooterFollowCurrent.value ?? 0) //+ (pivotShooterCurrent.value ?? 0)
 	);
@@ -87,7 +84,16 @@
 				<!-- <CurrentViewer name="Shooter Left" current={shooterCurrent.value ?? 0} limit={60} />
 				<CurrentViewer name="Shooter Right" current={shooterFollowCurrent.value ?? 0} limit={60} /> -->
 				<CurrentViewer name="Shooter Pivot" current={pivotShooterCurrent.value ?? 0} limit={60} />
-				<CurrentViewer name="Total Swerve Current" current={totalSwerveCurrent} limit={640} />
+				<CurrentViewer
+					name="Total Swerve Drive Current"
+					current={totalSwerveDriveMotorCurrent}
+					limit={400}
+				/>
+				<CurrentViewer
+					name="Total Swerve Angle Current"
+					current={totalSwerveAngleMotorCurrent}
+					limit={240}
+				/>
 			</ScrollArea>
 			<!-- {#if value !== null}
             {#if value}
