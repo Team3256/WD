@@ -8,6 +8,9 @@
 	const intakeCurrent = $derived(
 		ntEntry(nt, '/AdvantageKit/RealOutputs/Intake/IntakeCurrent', 'double')
 	);
+	const intakePivotCurrent = $derived(
+		ntEntry(nt, '/AdvantageKit/RealOutputs/PivotIntake/Current', 'double')
+	);
 	const passthroughCurrent = $derived(
 		ntEntry(nt, '/AdvantageKit/RealOutputs/Intake/PassthroughCurrent', 'double')
 	);
@@ -79,6 +82,7 @@
 					current={intakeAndPassthroughCurrent}
 					limit={90}
 				/>
+				<CurrentViewer name="Intake Pivot" current={intakePivotCurrent.value ?? 0} limit={100} />
 				<CurrentViewer name="Amp Bar" current={ampBarCurrent.value ?? 0} limit={5} />
 				<CurrentViewer name="Total Shooter" current={totalShooterCurrent ?? 0} limit={120} />
 				<!-- <CurrentViewer name="Shooter Left" current={shooterCurrent.value ?? 0} limit={60} />
