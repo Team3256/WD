@@ -11,9 +11,6 @@ jobs:
     runs-on: ${{ matrix.os }}
     permissions:
       id-token: write # IMPORTANT: this permission is mandatory for trusted publishing
-    defaults:
-      run:
-        shell: bash
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
@@ -48,13 +45,43 @@ jobs:
         run: pnpm install
       - name: Build the app
         run: pnpm tauri build
-      - name: Upload artifacts to release
-        uses: shogo82148/actions-upload-release-asset@v1
+      - name: (Ubuntu AppImage) Upload Release Asset
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: |
-            src-tauri/target/release/bundle/*/*.dmg
-            src-tauri/target/release/bundle/*/*.app
-            src-tauri/target/release/bundle/*/*.AppImage
-            src-tauri/target/release/bundle/*/*.deb
-            src-tauri/target/release/bundle/*/*.msi
+          asset_path: src-tauri/target/release/bundle/*/*.AppImage
+          asset_name: Linux.AppImage
+          asset_content_type: application/octet-stream
+      - name: (Ubuntu Deb) Upload Release Asset
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: src-tauri/target/release/bundle/*/*.deb
+          asset_name: Linux.deb
+          asset_content_type: application/octet-stream
+      - name: (MacOS) Upload Release Asset
+        if: matrix.os == 'macos-latest'
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: src-tauri/target/release/bundle/*/*.dmg
+          asset_name: WarriorDashboard.dmg
+          asset_content_type: application/x-apple-diskimage
+      - name: (Windows) Upload Release Asset
+        if: matrix.os == 'windows-latest'
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: src-tauri/target/release/bundle/*/*.msi
+          asset_name: WarriorDashboard.msi
+          asset_content_type: application/msi
