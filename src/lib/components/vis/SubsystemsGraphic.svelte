@@ -61,6 +61,7 @@
 	);
 </script>
 
+<!-- Note: Out of date because we're using Subsystems.svelte -->
 <div class="relative h-fit w-full">
 	<img src={imgSrc} alt="" srcset="" class="pr-3" />
 	<CurrentDot

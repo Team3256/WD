@@ -52,7 +52,7 @@
 	}
 </script>
 
-<Card.Root class="w-fit">
+<Card.Root class="w-full">
 	<Card.Header>
 		<Card.Title>Auto Chooser</Card.Title>
 	</Card.Header>

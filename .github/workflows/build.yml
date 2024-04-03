@@ -46,7 +46,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Build the app
-        run: pnpm tauri build
+        run: pnpm tauri build --debug
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
@@ -54,8 +54,8 @@ jobs:
           name: ${{ runner.os }} ${{ runner.arch }} artifacts
           # No .app because it's pretty big and .dmg is nicer
           path: |
-            src-tauri/target/release/bundle/*/*.dmg
-            src-tauri/target/release/bundle/*/*.app
-            src-tauri/target/release/bundle/*/*.AppImage
-            src-tauri/target/release/bundle/*/*.deb
-            src-tauri/target/release/bundle/*/*.msi
+            src-tauri/target/debug/bundle/*/*.dmg
+            src-tauri/target/debug/bundle/*/*.app
+            src-tauri/target/debug/bundle/*/*.AppImage
+            src-tauri/target/debug/bundle/*/*.deb
+            src-tauri/target/debug/bundle/*/*.msi

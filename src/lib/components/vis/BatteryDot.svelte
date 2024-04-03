@@ -23,22 +23,3 @@
 		<Tooltip.Content>Battery Voltage</Tooltip.Content>
 	</Tooltip.Root>
 </div>
-
-<style>
-	/* Define the flashing animation */
-	@keyframes flash-bg {
-		0% {
-			background-color: red;
-		}
-		50% {
-			background-color: white;
-		}
-		100% {
-			background-color: red;
-		}
-	}
-	:global(.flashing-element-bg) {
-		background-color: red;
-		animation: flash-bg 0.5s infinite alternate; /* alternate for flashing back and forth */
-	}
-</style>

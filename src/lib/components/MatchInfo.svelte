@@ -20,7 +20,7 @@
 	// const fmsAttatched = ntEntry(nt, '/AdvantageKit/DriverStation/fmsAttached', 'boolean');
 </script>
 
-<Card.Root>
+<Card.Root class="w-full">
 	<Card.Header>
 		<Card.Title>Match Info</Card.Title>
 	</Card.Header>

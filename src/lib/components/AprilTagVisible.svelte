@@ -15,7 +15,9 @@
 	const value = $derived(ntTopic.value);
 </script>
 
-<Card.Root class={`w-fit ${value !== null ? (value ? 'flashing-success' : 'bg-red-500') : ''}`}>
+<Card.Root
+	class={`h-full w-full ${value !== null ? (value ? 'flashing-success' : 'bg-red-500') : ''}`}
+>
 	<Card.Header>
 		<Card.Title>{name}</Card.Title>
 	</Card.Header>
