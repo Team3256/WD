@@ -59,39 +59,3 @@
 		{/if}
 	</Card.Content>
 </Card.Root>
-
-<style>
-	/* Define the flashing animation */
-	@keyframes flash {
-		0% {
-			color: red;
-		}
-		50% {
-			color: white;
-		}
-		100% {
-			color: red;
-		}
-	}
-	@keyframes flash-bg {
-		0% {
-			background-color: red;
-		}
-		50% {
-			background-color: white;
-		}
-		100% {
-			background-color: red;
-		}
-	}
-
-	/* Apply the animation to an element */
-	.flashing-element {
-		color: red;
-		animation: flash 0.2s 10 alternate; /* alternate for flashing back and forth */
-	}
-	:global(.flashing-element-bg) {
-		background-color: red;
-		animation: flash-bg 0.5s infinite alternate; /* alternate for flashing back and forth */
-	}
-</style>
