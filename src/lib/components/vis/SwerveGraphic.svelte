@@ -39,6 +39,7 @@
 	);
 </script>
 
+<!-- Note: Out of date because we're using Subsystems.svelte -->
 <Card.Root>
 	<Card.Header>
 		<Card.Title>Swerve + Battery</Card.Title>
