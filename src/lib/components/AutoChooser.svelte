@@ -64,7 +64,7 @@
 	<Card.Header>
 		<Card.Title>Auto Chooser</Card.Title>
 	</Card.Header>
-	<Card.Content>
+	<Card.Content class="flex flex-col space-y-5">
 		{#if options === null}
 			<p>FMS Disconnected!</p>
 		{:else}
@@ -116,6 +116,9 @@
 					</Command.Root>
 				</Popover.Content>
 			</Popover.Root>
+			{#if value}
+				<img src={getAutoPreviewPath(value)} alt="" />
+			{/if}
 		{/if}
 	</Card.Content>
 </Card.Root>

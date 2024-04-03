@@ -70,36 +70,31 @@
 	);
 </script>
 
-<div class="flex w-full flex-col">
-	<Card.Root>
-		<Card.Header>
-			<Card.Title>Subsystems</Card.Title>
-		</Card.Header>
-		<Card.Content>
-			<ScrollArea class="h-fit w-fit rounded-md">
-				<CurrentViewer
-					name="Intake + Passthrough"
-					current={intakeAndPassthroughCurrent}
-					limit={90}
-				/>
-				<CurrentViewer name="Intake Pivot" current={intakePivotCurrent.value ?? 0} limit={100} />
-				<CurrentViewer name="Amp Bar" current={ampBarCurrent.value ?? 0} limit={5} />
-				<CurrentViewer name="Total Shooter" current={totalShooterCurrent ?? 0} limit={120} />
-				<!-- <CurrentViewer name="Shooter Left" current={shooterCurrent.value ?? 0} limit={60} />
+<Card.Root class="w-full">
+	<Card.Header>
+		<Card.Title>Subsystems</Card.Title>
+	</Card.Header>
+	<Card.Content>
+		<ScrollArea class="h-full w-fit rounded-md">
+			<CurrentViewer name="Intake + Passthrough" current={intakeAndPassthroughCurrent} limit={90} />
+			<CurrentViewer name="Intake Pivot" current={intakePivotCurrent.value ?? 0} limit={100} />
+			<CurrentViewer name="Amp Bar" current={ampBarCurrent.value ?? 0} limit={5} />
+			<CurrentViewer name="Total Shooter" current={totalShooterCurrent ?? 0} limit={120} />
+			<!-- <CurrentViewer name="Shooter Left" current={shooterCurrent.value ?? 0} limit={60} />
 				<CurrentViewer name="Shooter Right" current={shooterFollowCurrent.value ?? 0} limit={60} /> -->
-				<CurrentViewer name="Shooter Pivot" current={pivotShooterCurrent.value ?? 0} limit={60} />
-				<CurrentViewer
-					name="Total Swerve Drive Current"
-					current={totalSwerveDriveMotorCurrent}
-					limit={400}
-				/>
-				<CurrentViewer
-					name="Total Swerve Angle Current"
-					current={totalSwerveAngleMotorCurrent}
-					limit={240}
-				/>
-			</ScrollArea>
-			<!-- {#if value !== null}
+			<CurrentViewer name="Shooter Pivot" current={pivotShooterCurrent.value ?? 0} limit={60} />
+			<CurrentViewer
+				name="Total Swerve Drive Current"
+				current={totalSwerveDriveMotorCurrent}
+				limit={400}
+			/>
+			<CurrentViewer
+				name="Total Swerve Angle Current"
+				current={totalSwerveAngleMotorCurrent}
+				limit={240}
+			/>
+		</ScrollArea>
+		<!-- {#if value !== null}
             {#if value}
                 <code class="text-mono text-bold text-lg">TRUE</code>
             {:else}
@@ -108,6 +103,5 @@
         {:else}
             <div class="text-gray-400">No value</div>
         {/if} -->
-		</Card.Content>
-	</Card.Root>
-</div>
+	</Card.Content>
+</Card.Root>
