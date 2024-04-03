@@ -51,4 +51,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           file_glob: true
-          file: src-tauri/target/debug/bundle/*/*.{dmg,app,AppImage,deb,msi}
+          file: |
+            src-tauri/target/debug/bundle/*/*.dmg
+            src-tauri/target/debug/bundle/*/*.app
+            src-tauri/target/debug/bundle/*/*.AppImage
+            src-tauri/target/debug/bundle/*/*.deb
+            src-tauri/target/debug/bundle/*/*.msi
