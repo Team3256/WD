@@ -2,13 +2,21 @@
 	import * as Card from '$lib/components/ui/card';
 	import { type NetworkTables, NetworkTablesTypeInfos } from 'ntcore-ts-client';
 	import Check from 'svelte-radix/Check.svelte';
-	import CaretSort from 'svelte-radix/CaretSort.svelte';
 	import * as Command from '$lib/components/ui/command/index';
+	import CaretSort from 'svelte-radix/CaretSort.svelte';
+
 	import * as Popover from '$lib/components/ui/popover/index';
 	import { Button } from '$lib/components/ui/button/index';
-	import { cn } from '$lib/utils';
+	import * as HoverCard from '$lib/components/ui/hover-card';
 	import { tick } from 'svelte';
-
+	const autoPreviews = import.meta.glob('$lib/assets/autos/*.png', {
+		eager: true,
+		import: 'default'
+	}) as Record<string, string>;
+	function getAutoPreviewPath(autoName: string): string {
+		const key = Object.keys(autoPreviews).find((f) => f.includes(autoName));
+		return key ? autoPreviews[key] ?? '' : '';
+	}
 	const { nt }: { nt: NetworkTables } = $props();
 	const autoOptionsTopic = $derived(
 		nt.createTopic<string[]>(
@@ -80,18 +88,28 @@
 							<Command.Empty>No auto found.</Command.Empty>
 							<Command.Group>
 								{#each options as framework}
-									<Command.Item
-										value={framework}
-										onSelect={async (currentValue) => {
-											if (!currentAutoTopic.publisher) await currentAutoTopic.publish();
-											currentAutoTopic.setValue(currentValue);
-											value = currentValue;
-											closeAndFocusTrigger(ids.trigger);
-										}}
+									<HoverCard.Root
+										openDelay={0}
+										closeDelay={0}
+										onOutsideClick={closeAndFocusTrigger}
 									>
-										<Check class={cn('mr-2 h-4 w-4', value !== framework && 'text-transparent')} />
-										{framework}
-									</Command.Item>
+										<HoverCard.Trigger>
+											<Command.Item
+												value={framework}
+												onSelect={async (currentValue) => {
+													if (!currentAutoTopic.publisher) await currentAutoTopic.publish();
+													currentAutoTopic.setValue(currentValue);
+													value = currentValue;
+													closeAndFocusTrigger(ids.trigger);
+												}}
+											>
+												{framework}
+											</Command.Item>
+										</HoverCard.Trigger>
+										<HoverCard.Content side="right" strategy="fixed">
+											<img src={getAutoPreviewPath(framework)} alt="" />
+										</HoverCard.Content>
+									</HoverCard.Root>
 								{/each}
 							</Command.Group>
 						</Command.List>
