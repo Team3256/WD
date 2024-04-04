@@ -52,7 +52,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           file_glob: true
-          file: src-tauri/target/debug/bundle/*/*.dmg
+          file: src-tauri/target/release/bundle/*/*.dmg
       - name: (.msi) Upload files to a GitHub release
         uses: svenstaro/upload-release-action@2.9.0
         continue-on-error: true
@@ -60,7 +60,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           file_glob: true
-          file: src-tauri/target/debug/bundle/*/*.msi
+          file: src-tauri/target/release/bundle/*/*.msi
       - name: (.deb) Upload files to a GitHub release
         uses: svenstaro/upload-release-action@2.9.0
         continue-on-error: true
@@ -68,7 +68,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           file_glob: true
-          file: src-tauri/target/debug/bundle/*/*.deb
+          file: src-tauri/target/release/bundle/*/*.deb
       - name: (.AppImage) Upload files to a GitHub release
         uses: svenstaro/upload-release-action@2.9.0
         continue-on-error: true
@@ -76,7 +76,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           file_glob: true
-          file: src-tauri/target/debug/bundle/*/*.AppImage
+          file: src-tauri/target/release/bundle/*/*.AppImage
       - name: (.app) Upload files to a GitHub release
         uses: svenstaro/upload-release-action@2.9.0
         continue-on-error: true
@@ -84,4 +84,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           file_glob: true
-          file: src-tauri/target/debug/bundle/*/*.app
+          file: src-tauri/target/release/bundle/*/*.app
