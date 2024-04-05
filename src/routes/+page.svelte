@@ -62,9 +62,9 @@
 			<NtElement
 				class="h-full w-full"
 				{nt}
-				path="/AdvantageKit/RealOutputs/PivotShooter/Degrees"
+				path="/AdvantageKit/RealOutputs/SpeakerDistance"
 				type="double"
-				name="Pivot Shooter degrees"
+				name="Speaker Distance"
 			/>
 		</div>
 	</div>
