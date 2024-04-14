@@ -12,12 +12,21 @@
 	import MatchInfo from '$lib/components/MatchInfo.svelte';
 	import SubsystemsGraphic from '$lib/components/vis/SubsystemsGraphic.svelte';
 	import SwerveGraphic from '$lib/components/vis/SwerveGraphic.svelte';
+	import * as Tabs from '$lib/components/ui/tabs/index.js';
+	import { Button } from '$lib/components/ui/button/index.js';
 	import AprilTagVisible from '$lib/components/AprilTagVisible.svelte';
 	import Subsystems from '$lib/components/Subsystems.svelte';
 	let teamNum = $state(3256);
 	let devMode = $state(false);
+	let address = $state('localhost');
+	let port = $state(5801);
+	let configMode = $state('simple');
 	const nt = $derived(
-		devMode ? NetworkTables.getInstanceByURI('localhost') : NetworkTables.getInstanceByTeam(teamNum)
+		configMode === 'simple'
+			? devMode
+				? NetworkTables.getInstanceByURI('localhost')
+				: NetworkTables.getInstanceByTeam(teamNum)
+			: NetworkTables.getInstanceByURI(address, port)
 	);
 	let active = $state(false);
 </script>
@@ -74,14 +83,52 @@
 			<Card.Title>Config</Card.Title>
 		</Card.Header>
 		<Card.Content class="space-y-5">
-			<div class="flex items-center space-x-2">
-				<Label for="airplane-mode">Dev Mode</Label>
-				<Switch id="airplane-mode" bind:checked={devMode} />
-			</div>
-			<div class="grid w-full max-w-sm items-center gap-1.5">
-				<Label for="team">Team #</Label>
-				<Input type="number" id="team" bind:value={teamNum} />
-			</div>
+			<Tabs.Root bind:value={configMode} class="w-full">
+				<Tabs.List class="grid w-full grid-cols-2">
+					<Tabs.Trigger value="simple">Simple</Tabs.Trigger>
+					<Tabs.Trigger value="uri">URI</Tabs.Trigger>
+				</Tabs.List>
+				<Tabs.Content value="simple">
+					<Card.Root>
+						<Card.Header>
+							<Card.Title>Simple</Card.Title>
+							<!-- <Card.Description>
+								Make changes to your account here. Click save when you're done.
+							</Card.Description> -->
+						</Card.Header>
+						<Card.Content class="space-y-2">
+							<div class="flex items-center space-x-2">
+								<Label for="airplane-mode">Dev Mode</Label>
+								<Switch id="airplane-mode" bind:checked={devMode} />
+							</div>
+							<div class="grid w-full max-w-sm items-center gap-1.5">
+								<Label for="port">Port</Label>
+								<Input type="number" id="port" bind:value={port} />
+							</div>
+						</Card.Content>
+					</Card.Root>
+				</Tabs.Content>
+				<Tabs.Content value="uri">
+					<Card.Root>
+						<Card.Header>
+							<Card.Title>URI</Card.Title>
+							<!-- <Card.Description>
+								Change your password here. After saving, you'll be logged out.
+							</Card.Description> -->
+						</Card.Header>
+						<Card.Content class="space-y-2">
+							<div class="grid w-full max-w-sm items-center gap-1.5">
+								<Label for="address">Address</Label>
+								<Input type="text" id="address" bind:value={address} />
+							</div>
+							<div class="grid w-full max-w-sm items-center gap-1.5">
+								<Label for="team">Port</Label>
+								<Input type="number" id="team" bind:value={teamNum} />
+							</div>
+						</Card.Content>
+					</Card.Root>
+				</Tabs.Content>
+			</Tabs.Root>
 		</Card.Content>
 	</Card.Root>
 </div>
