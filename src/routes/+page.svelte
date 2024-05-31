@@ -19,7 +19,7 @@
 	let teamNum = $state(3256);
 	let devMode = $state(false);
 	let address = $state('localhost');
-	let port = $state(5801);
+	let port = $state(5810);
 	let configMode = $state('simple');
 	const nt = $derived(
 		configMode === 'simple'
